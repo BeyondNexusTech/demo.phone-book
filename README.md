@@ -37,7 +37,7 @@ L'Annuaire Téléphonique Inversé est une application web qui permet de recherc
 
 1. Cloner le Dépôt
 ```powershell
-git clone https://github.com/neshkel/demo_phone-book.git
+git clone https://github.com/BNet-Work/demo.phone-book.git
 cd demo_phone_book
 ```
 
@@ -47,7 +47,7 @@ cd demo_phone_book
 - Importez le fichier database.sql pour créer les tables nécessaires :
 
 ```powershell
-mysql -u votreutilisateur -p votremotdepasse demo_phone-book.db < database.sql
+mysql -u votreutilisateur -p votremotdepasse demo.phone-book.db < database.sql
 ```
 
 4. Démarrer le Serveur
