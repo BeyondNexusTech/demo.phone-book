@@ -1,0 +1,128 @@
+<IfModule mod_rewrite.c>
+    # Ensures that the rewrite module is loaded. The following line is commented
+    # out because it is generally included in the main Apache configuration.
+    # LoadModule rewrite_module modules/mod_rewrite.so
+
+    # Turns on the rewrite engine
+    RewriteEngine On
+
+    # Blocks direct access to directories to prevent directory listing
+    Options -Indexes
+
+    # Redirects requests to www if the URL does not start with www
+    RewriteCond %{HTTP_HOST} !^www\. [NC]
+    RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Redirects HTTP requests to HTTPS if the connection is not secure
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+    # If the request is for an existing file, do not rewrite
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # If the request is for an existing directory, do not rewrite
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Rewrite all other requests to index.php
+    RewriteRule ^ index.php [QSA,L]
+    RewriteRule .* - [E=Cache-Control:no-cache]
+</IfModule>
+
+<IfModule mod_mime.c>
+    AddDefaultCharset UTF-8
+
+    # Ensure the correct MIME type for .ico files
+    AddType image/x-icon .ico
+
+    # Ensure the correct MIME type for .js files
+    AddType application/javascript .js
+
+    # Ensure the correct MIME type for .css files
+    AddType text/css .css
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Allow all headers in CORS requests
+    Header set Access-Control-Allow-Headers: "*"
+
+    # Allow cross-origin requests from a specific domain
+    Header set Access-Control-Allow-Origin "https://www.demo.phone-book.blache-nolwenn.fr"
+
+    # Enable HTTP Strict Transport Security (HSTS) for two years, including subdomains and preload
+    Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+    # Content Security Policy (CSP) settings
+    Header set Content-Security-Policy " \
+        style-src 'self' 'unsafe-inline' https://www.demo.phone-book.blache-nolwenn.fr; \
+        script-src 'self' 'unsafe-inline' https://www.demo.phone-book.blache-nolwenn.fr; \
+        img-src 'self' https://www.demo.phone-book.blache-nolwenn.fr data:; \
+        connect-src 'self' https://www.demo.phone-book.blache-nolwenn.fr;"
+
+    # Prevent the site from being embedded in a frame
+    Header set X-Frame-Options "DENY"
+
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+
+    # Set the referrer policy to strict-origin-when-cross-origin
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Set permissions policy to disable various features
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), autoplay=(), fullscreen=(), microphone=(), payment=()"
+
+    # Enable XSS protection in the browser
+    Header set X-XSS-Protection "1; mode=block"
+
+    # Set a custom header
+    Header set copyright "Website build by BLACHE Nolwenn."
+
+    # Set cache control headers for specific file types to one year
+    <FilesMatch "\.(ico|jpe?g|png|gif|swf|css|gz|webp)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+
+    # Set cache control headers for JavaScript files to one year, private
+    <FilesMatch "\.(js|mjs)$">
+#        Header set Cache-Control "max-age=31536000, public"
+        Header set Content-Type "application/javascript"
+    </FilesMatch>
+
+    # Set cache control headers for HTML files to two hours
+    <filesMatch "\.(html|htm)$">
+        Header set Cache-Control "max-age=7200, public"
+    </filesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+    # Enable the Expires module
+    ExpiresActive On
+
+    # Set the default expiration to 7200 seconds (2 hours)
+    ExpiresDefault "access plus 7200 seconds"
+
+    # Set expiration for various image types to 31536000 seconds (1 year)
+    ExpiresByType image/jpg "access plus 31536000 seconds"
+    ExpiresByType image/jpeg "access plus 31536000 seconds"
+    ExpiresByType image/png "access plus 31536000 seconds"
+    ExpiresByType image/gif "access plus 31536000 seconds"
+
+    # Set expiration for various icon types to 31536000 seconds (1 year)
+    ExpiresByType image/ico "access plus 31536000 seconds"
+    ExpiresByType image/icon "access plus 31536000 seconds"
+    ExpiresByType image/x-icon "access plus 31536000 seconds"
+
+    # Set expiration for CSS files to 31536000 seconds (1 year)
+    ExpiresByType text/css "access plus 31536000 seconds"
+
+    # Set expiration for JavaScript files to 31536000 seconds (1 year)
+#    ExpiresByType text/javascript "access plus 31536000 seconds"
+#    ExpiresByType application/javascript "access plus 31536000 seconds"
+#    ExpiresByType application/x-javascript "access plus 31536000 seconds"
+
+    # Set expiration for HTML files to 7200 seconds (2 hours)
+    ExpiresByType text/html "access plus 7200 seconds"
+    ExpiresByType application/xhtml+xml "access plus 7200 seconds"
+
+    # Set expiration for Shockwave Flash files to 31536000 seconds (1 year)
+    ExpiresByType application/x-shockwave-flash "access plus 31536000 seconds"
+</IfModule>
