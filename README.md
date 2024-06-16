@@ -12,7 +12,7 @@ Bienvenue sur le dépôt GitHub de l'Annuaire Téléphonique Inversé ! Ce proje
 
 ## À Propos de ce Projet
 
-L'Annuaire Téléphonique Inversé est une application web qui permet de rechercher rapidement et efficacement des informations de contact à partir d'une base de données. Que vous ayez un numéro de téléphone ou seulement un nom ou prénom, cette annuaire vous fournira les informations disponibles associées.
+L'[Annuaire Téléphonique](https://www.demo.phone-book.blache-nolwenn.fr) est une application web qui permet de rechercher rapidement et efficacement des informations de contact à partir d'une base de données. Que vous ayez un numéro de téléphone ou seulement un nom ou prénom, cette annuaire vous fournira les informations disponibles associées.
 
 <br>
 
@@ -58,7 +58,7 @@ Assurez-vous que votre serveur web (Apache/Nginx) est configuré pour pointer ve
 ### Utilisation
 
 - **Recherche par Téléphone :** Saisissez un numéro de téléphone dans la barre de recherche pour obtenir les informations de contact associées.
-- **Recherche par Nom ou Prénom :** Saisissez un nom ou un prénom dans la barre de recherche pour obtenir les correspondances disponibles.
+- **Recherche par Nom ou Société :** Saisissez un nom ou un prénom dans la barre de recherche pour obtenir les correspondances disponibles.
 
 <br>
 
@@ -96,25 +96,3 @@ Ce projet est sous licence BNetWork. Voir le fichier LICENSE pour plus de détai
 Pour toute question ou support, veuillez ouvrir une issue sur GitHub ou contacter l'administrateur du projet via email.
 
 <br>
-
-![Build Status](https://github.com/neshkel/demo.phone-book/actions/workflows/ci.yml/badge.svg)
-
-![Build Status](https://travis-ci.com/neshkel/demo.phone-book.svg?branch=main)
-
-![Codecov](https://codecov.io/gh/neshkel/demo.phone-book/branch/master/graph/badge.svg)
-
-![Coverage Status](https://coveralls.io/repos/github/neshkel/demo.phone-book/badge.svg?branch=main)
-
-![Dependencies](https://david-dm.org/neshkel/demo.phone-book.svg)
-
-![Known Vulnerabilities](https://snyk.io/test/github/neshkel/demo.phone-book/badge.svg)
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=neshkel&layout=compact)
-
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/neshkel/demo.phone-book)
-
-![License](https://img.shields.io/github/license/neshkel/demo.phone-book)
-
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/neshkel/demo.phone-book)
-
-![Documentation Status](https://readthedocs.org/projects/demo_phone-book/badge/?version=latest)
